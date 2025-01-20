@@ -9,7 +9,8 @@ export default async function Home() {
 
 	const IsAfterNoon = moment().isAfter(moment().hour(12).minute(0).second(0));
   const isHoliday = () => {
-    // Holiday Consider is when the parsed data is empty or the parsed data has only first period and it's empty and has no second period
+    // Holiday Consider is when the parsed data is empty
+    //  or the parsed data has only first period and it's empty and has no second period
     return ParsedData.today.length === 0 || (ParsedData.today.length === 1 && ParsedData.today[0].LectureName === "" && ParsedData.today[0].period === 1)
   }
 	return (
