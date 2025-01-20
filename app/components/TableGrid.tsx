@@ -1,11 +1,10 @@
+import { Schedule } from "../@types";
 import TableItem from "./TableItem";
 
-const TableGrid = () => {
+const TableGrid = ({data} : {data: Schedule}) => {
 	return (
 		<div className='flex flex-col gap-3 items-center justify-center border border-gray-700 rounded-xl p-4'>
-			<TableItem />
-			<TableItem />
-			<TableItem />
+			{data.today.map((item, index) => <TableItem key={index} item={item} />)}
 
 			<div className="text-xs">
 				<div className='flex items-center gap-3 '>

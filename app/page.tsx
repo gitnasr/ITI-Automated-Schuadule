@@ -1,10 +1,12 @@
 import Image from "next/image";
 import TableGrid from "./components/TableGrid";
 import moment from "moment";
-import { GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
+import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
 
-export default function Home() {
-  GetGoogleSheetAccess()
+export default async function Home() {
+  const data = await GetGoogleSheetAccess();
+  const ParsedData = await FilterData(data);
+  console.log("🚀 ~ Home ~ FilteredData", ParsedData)
 	return (
 		<div className='flex flex-col gap-8 min-h-screen p-8 '>
 			<main className='flex flex-col gap-3  m-auto'>
@@ -24,10 +26,10 @@ export default function Home() {
 
 				<div className=' text-center'>
 					<h2 className='text-2xl  font-bold text-emerald-600 '>
-						Our Schedule For Today ({moment().format("MMM DD")})
+						Our Schedule For Today {moment().format("MMM DD")}
 					</h2>
 				</div>
-				<TableGrid />
+				<TableGrid data={ParsedData}/>
 			</main>
 			<footer className='text-center text-sm font-black font-mono'>
 				<span>Made with ❤️ @ IT Alexandria Labs by</span>

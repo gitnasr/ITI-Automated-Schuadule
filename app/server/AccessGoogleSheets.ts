@@ -1,7 +1,6 @@
 "use server";
 import { google } from "googleapis";
 import moment from "moment";
-import fs from "node:fs";
 import { Schedule } from "../@types";
 
 const SPREADSHEET_ID = "15niRN3yDfeglOy4UPiYB7UrpOxhp83slN4BJcD2HAvs";
@@ -12,7 +11,7 @@ const SECOND_PERIOD_INDEX = 7;
 
 const THIRD_PERIOD_INDEX = 10;
 
-const FilterData = (data: any[][]) => {
+export const FilterData = async (data: any[][]) => {
 	const todayAsTableFormat = moment().format("D-MMM-YY");
 	const tomorrowAsTableFormat = moment().add(1, "days").format("D-MMM-YY");
 	const Schedule: Schedule = {
@@ -72,7 +71,7 @@ const FilterData = (data: any[][]) => {
 			}
 		}
 	}
-	
+	return Schedule;
 };
 
 export async function GetGoogleSheetAccess() {
