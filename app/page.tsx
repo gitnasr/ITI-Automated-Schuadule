@@ -41,7 +41,7 @@ export default async function Home() {
 				</div> : <div>Enjoy Your Holiday</div>}
 			</main>
 			<footer className='text-center text-sm font-black font-mono'>
-				<span>Made with ❤️ @ IT Alexandria Labs by</span>
+				<span>Made with ❤️ @ ITI Alexandria Labs by</span>
 				<a
 					className=' decoration-sky-500 underline decoration-2	 ml-1'
 					href='https://github/gitnasr'
