@@ -1,13 +1,16 @@
+import moment from "moment";
 import { PeriodItem } from "../@types";
 
-const TableItem = ({ item }: { item: PeriodItem }) => {
-	
-
+const TableItem = ({ item, scope }: { item: PeriodItem; scope: string }) => {
 	return (
 		<div className='grid gird-cols-2 w-full '>
 			<div className='flex flex-col '>
-				<h2
-					className="text-2xl font-bold text-cyan-700">
+				<span className='text-xs font-extralight '>
+					{scope === "today"
+						? `TODAY, ${moment().format("DD MMM")}`
+						: `TOMORROW, ${moment().format("DD MMM")}`}
+				</span>
+				<h2 className='text-2xl font-bold text-cyan-700'>
 					{item.period === 1
 						? "09:00AM"
 						: item.period === 2
@@ -16,8 +19,15 @@ const TableItem = ({ item }: { item: PeriodItem }) => {
 				</h2>
 			</div>
 			<div className='flex flex-col'>
-				<h2 className='text-2xl font-bold'>{item.LectureName}</h2>
-				<h2 className='text-xs font-extralight'>{item.LectureLocation || "Online"}</h2>
+				<h2 className='text-2xl font-bold'>
+					{item.LectureName ? item.LectureName : "Nothing, Enjoy"}
+				</h2>
+				<h2 className='text-xs font-extralight'>
+					{item.LectureName &&
+						(item.LectureLocation
+							? item.LectureLocation
+							: "Can't Detect Location")}
+				</h2>
 			</div>
 		</div>
 	);

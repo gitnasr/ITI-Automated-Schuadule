@@ -4,9 +4,14 @@ import moment from "moment";
 import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
 
 export default async function Home() {
-  const data = await GetGoogleSheetAccess();
-  const ParsedData = await FilterData(data);
-  console.log("🚀 ~ Home ~ FilteredData", ParsedData)
+	const data = await GetGoogleSheetAccess();
+	const ParsedData = await FilterData(data);
+
+	const IsAfterNoon = moment().isAfter(moment().hour(12).minute(0).second(0));
+  const isHoliday = () => {
+    // Holiday Consider is when the parsed data is empty or the parsed data has only first period and it's empty and has no second period
+    return ParsedData.today.length === 0 || (ParsedData.today.length === 1 && ParsedData.today[0].LectureName === "" && ParsedData.today[0].period === 1)
+  }
 	return (
 		<div className='flex flex-col gap-8 min-h-screen p-8 '>
 			<main className='flex flex-col gap-3  m-auto'>
@@ -23,13 +28,17 @@ export default async function Home() {
 						We are ITI Alexandria PWD Intake 45
 					</h1>
 				</div>
-
-				<div className=' text-center'>
-					<h2 className='text-2xl  font-bold text-emerald-600 '>
-						Our Schedule For Today {moment().format("MMM DD")}
-					</h2>
-				</div>
-				<TableGrid data={ParsedData}/>
+        {!isHoliday() ? 
+				<div className='flex flex-col md:flex-row gap-3 items-center justify-center'>
+					<TableGrid
+						data={ParsedData}
+						scope={IsAfterNoon ? "tomorrow" : "today"}
+					/>
+					<TableGrid
+						data={ParsedData}
+						scope={IsAfterNoon ? "today" : "tomorrow"}
+					/>
+				</div> : <div>Enjoy Your Holiday</div>}
 			</main>
 			<footer className='text-center text-sm font-black font-mono'>
 				<span>Made with ❤️ @ IT Alexandria Labs by</span>
