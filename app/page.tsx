@@ -1,8 +1,10 @@
 import Image from "next/image";
 import TableGrid from "./components/TableGrid";
 import moment from "moment";
+import { GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
 
 export default function Home() {
+  GetGoogleSheetAccess()
 	return (
 		<div className='flex flex-col gap-8 min-h-screen p-8 '>
 			<main className='flex flex-col gap-3  m-auto'>
