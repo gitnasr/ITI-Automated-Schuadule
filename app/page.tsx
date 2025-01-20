@@ -1,5 +1,6 @@
 import Image from "next/image";
 import TableGrid from "./components/TableGrid";
+import moment from "moment";
 
 export default function Home() {
 	return (
@@ -21,7 +22,7 @@ export default function Home() {
 				</div>
 
 				<div className=' text-center'>
-					<h2 className='text-2xl  font-bold text-emerald-600 '>Our Schedule For Today</h2>
+					<h2 className='text-2xl  font-bold text-emerald-600 '>Our Schedule For Today ({moment().format("MMM DD")})</h2>
 				</div>
         <TableGrid />
 
