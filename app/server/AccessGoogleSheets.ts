@@ -1,7 +1,7 @@
 "use server";
 import { google } from "googleapis";
 import moment from "moment";
-import { Schedule } from "../@types";
+import { Schedule } from "../types";
 
 const SPREADSHEET_ID = "15niRN3yDfeglOy4UPiYB7UrpOxhp83slN4BJcD2HAvs";
 const SHEET_NAME = "PD&SQLBI_45_Alex!A1:L1000";

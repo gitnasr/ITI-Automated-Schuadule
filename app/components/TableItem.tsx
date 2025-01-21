@@ -1,5 +1,5 @@
 import moment from "moment";
-import { PeriodItem } from "../@types";
+import { PeriodItem } from "../types";
 
 const TableItem = ({ item, scope }: { item: PeriodItem; scope: string }) => {
 	return (
