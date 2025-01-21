@@ -92,3 +92,11 @@ export async function GetGoogleSheetAccess() {
 	}
 	return response.data.values;
 }
+export const CronJobAction = async () => {
+	const data = await GetGoogleSheetAccess();
+	if (!data) {
+		return { success: false, message: "No Data Found" };
+	}
+	const ParsedData = await FilterData(data);
+	return { success: true, message: ParsedData };
+}
