@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<img src="https://github.com/user-attachments/assets/1eb57988-db53-4dd5-a23d-189deda75de3" alt="iti" width="64" />  
 
-## Getting Started
+# The Automated ITI Schedule
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A lightweight web service designed to fetch the schedule of ITI PWD Intake 45 from Google Sheets and parse it using a custom algorithm, making the schedule easily accessible and user-friendly.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Motivation  
+Personally, I find Google Sheets cumbersome to use, especially on my phone, as it offers a very limited view. The schedules are often large and overly detailed, but as students, we mostly care about the current day's schedule or what's planned for tomorrow.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+So, why not create a simple web service to solve this problem?  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Technologies  
 
-## Learn More
+- **Next.js** with Server Actions and PWA support  
+- **Moment.js** for date handling  
+- **TailwindCSS** for sleek and modern styling  
 
-To learn more about Next.js, take a look at the following resources:
+## The Output  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![screenshot](https://github.com/user-attachments/assets/6e40449d-4144-42d6-a0cf-34581648f6a4)  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![](https://img.shields.io/badge/next.js-fff?style=for-the-badge&logo=nextdotjs&logoColor=black)  
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## API Endpoint  
+Thanks to Next.js Server Actions, I’ve created an endpoint `/api/automated` to access the schedule data via an API. This is particularly useful because I plan to develop a WhatsApp bot that sends notifications whenever the schedule is updated!  
