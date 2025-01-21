@@ -2,17 +2,26 @@ import Image from "next/image";
 import TableGrid from "./components/TableGrid";
 import moment from "moment";
 import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
+import { NoData } from "./components/NoData";
 
 export default async function Home() {
 	const data = await GetGoogleSheetAccess();
+	if (!data) {
+		return <NoData />;
+	}
 	const ParsedData = await FilterData(data);
 
 	const IsAfterNoon = moment().isAfter(moment().hour(12).minute(0).second(0));
-  const isHoliday = () => {
-    // Holiday Consider is when the parsed data is empty
-    //  or the parsed data has only first period and it's empty and has no second period
-    return ParsedData.today.length === 0 || (ParsedData.today.length === 1 && ParsedData.today[0].LectureName === "" && ParsedData.today[0].period === 1)
-  }
+	const isHoliday = () => {
+		// Holiday Consider is when the parsed data is empty
+		//  or the parsed data has only first period and it's empty and has no second period
+		return (
+			ParsedData.today.length === 0 ||
+			(ParsedData.today.length === 1 &&
+				ParsedData.today[0].LectureName === "" &&
+				ParsedData.today[0].period === 1)
+		);
+	};
 	return (
 		<div className='flex flex-col gap-8 min-h-screen p-8 '>
 			<main className='flex flex-col gap-3  m-auto'>
@@ -29,29 +38,22 @@ export default async function Home() {
 						We are ITI Alexandria PWD Intake 45
 					</h1>
 				</div>
-        {!isHoliday() ? 
-				<div className='flex flex-col md:flex-row gap-3 items-center justify-center'>
-					<TableGrid
-						data={ParsedData}
-						scope={IsAfterNoon ? "tomorrow" : "today"}
-					/>
-					<TableGrid
-						data={ParsedData}
-						scope={IsAfterNoon ? "today" : "tomorrow"}
-					/>
-				</div> : <div>Enjoy Your Holiday</div>}
+				{!isHoliday() ? (
+					<div className='flex flex-col md:flex-row gap-3 items-center justify-center'>
+						<TableGrid
+							data={ParsedData}
+							scope={IsAfterNoon ? "tomorrow" : "today"}
+						/>
+						<TableGrid
+							data={ParsedData}
+							scope={IsAfterNoon ? "today" : "tomorrow"}
+						/>
+					</div>
+				) : (
+					<div>Enjoy Your Holiday</div>
+				)}
 			</main>
-			<footer className='text-center text-sm font-black font-mono'>
-				<span>Made with ❤️ @ ITI Alexandria Labs by</span>
-				<a
-					className=' decoration-sky-500 underline decoration-2	 ml-1'
-					href='https://github.com/gitnasr'
-					referrerPolicy='no-referrer'
-					target='_blank'>
-					NASR
-				</a>
-			</footer>
-  
+			
 		</div>
 	);
 }
