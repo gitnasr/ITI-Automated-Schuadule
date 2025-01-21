@@ -1,9 +1,9 @@
 interface PeriodItem {
     period: number;
     time: string;
-    LectureName: string;
-    InstructorName: string;
-    LectureLocation: string;
+    LectureName: string | undefined;
+    InstructorName: string | undefined;
+    LectureLocation: string | undefined;
 }
 type Schedule = {
     today: PeriodItem[];
