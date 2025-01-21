@@ -11,7 +11,7 @@ const SECOND_PERIOD_INDEX = 7;
 
 const THIRD_PERIOD_INDEX = 10;
 
-export const FilterData = async (data: any[][]) => {
+export const FilterData = async (data: (string | undefined)[][]) => {
 	const todayAsTableFormat = moment().format("D-MMM-YY");
 	const tomorrowAsTableFormat = moment().add(1, "days").format("D-MMM-YY");
 	const Schedule: Schedule = {

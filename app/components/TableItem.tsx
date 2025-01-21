@@ -8,7 +8,7 @@ const TableItem = ({ item, scope }: { item: PeriodItem; scope: string }) => {
 				<span className='text-xs font-extralight '>
 					{scope === "today"
 						? `TODAY, ${moment().format("DD MMM")}`
-						: `TOMORROW, ${moment().format("DD MMM")}`}
+						: `TOMORROW, ${moment().add(1,"day").format("DD MMM")}`}
 				</span>
 				<h2 className='text-2xl font-bold text-cyan-700'>
 					{item.period === 1

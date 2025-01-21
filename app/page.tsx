@@ -45,10 +45,10 @@ export default async function Home() {
 				<span>Made with ❤️ @ ITI Alexandria Labs by</span>
 				<a
 					className=' decoration-sky-500 underline decoration-2	 ml-1'
-					href='https://github/gitnasr'
+					href='https://github.com/gitnasr'
 					referrerPolicy='no-referrer'
 					target='_blank'>
-					Nasr
+					NASR
 				</a>
 			</footer>
   
