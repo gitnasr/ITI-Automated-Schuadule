@@ -39,7 +39,7 @@ export default async function Home() {
 					</h1>
 				</div>
 				{!isHoliday() ? (
-					<div className='flex flex-col md:flex-row gap-3 items-center justify-center'>
+					<div className='flex flex-col md:flex-row gap-3 justify-center'>
 						<TableGrid
 							data={ParsedData}
 							scope={IsAfterNoon ? "tomorrow" : "today"}
