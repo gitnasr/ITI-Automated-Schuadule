@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import { Geist, Geist_Mono } from "next/font/google";
+
+import type { Metadata } from "next";
 import moment from "moment-timezone";
 
 const geistSans = Geist({
@@ -34,7 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <footer className='text-center text-sm font-black font-mono fixed bottom-5 left-0 right-0'>
+        <footer className='text-center text-sm font-black font-mono fixed bottom-0 left-0 bg-inherit right-0 p-4'>
 				<span>Made with ❤️ @ ITI Alexandria Labs by</span>
 				<a
 					className=' decoration-sky-500 underline decoration-2	 ml-1'
@@ -44,7 +46,7 @@ export default function RootLayout({
 					NASR
 				</a>
 
-        <span className='mx-1'>| <a className="underline decoration-white "
+        <span className='mx-1'><br/> <a className="underline decoration-white "
         referrerPolicy='no-referrer'
 					target='_blank'
           href="https://docs.google.com/spreadsheets/d/15niRN3yDfeglOy4UPiYB7UrpOxhp83slN4BJcD2HAvs"
