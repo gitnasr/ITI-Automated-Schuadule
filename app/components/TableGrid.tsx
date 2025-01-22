@@ -1,4 +1,5 @@
-import { Schedule } from "../types";
+import { Schedule, Scope } from "../types";
+
 import TableItem from "./TableItem";
 
 const TableGrid = ({
@@ -6,12 +7,12 @@ const TableGrid = ({
 	scope,
 }: {
 	data: Schedule;
-	scope: "today" | "tomorrow";
+	scope: Scope;
 }) => {
 	return (
 		<div className='flex flex-col gap-3 lg:items-start w-full'>
 		
-			<div className='flex min-h-full flex-col gap-3  justify-center border border-gray-700 rounded-xl p-4'>
+			<div className='flex  flex-col gap-6 justify-center border border-gray-700 rounded-xl p-4'>
 				{data[scope].map((item, index) => (
 					<TableItem key={index} item={item} scope={scope} />
 				))}

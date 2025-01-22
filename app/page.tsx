@@ -2,6 +2,7 @@ import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
 
 import Image from "next/image";
 import { NoData } from "./components/NoData";
+import { Scope } from "./types";
 import TableGrid from "./components/TableGrid";
 import moment from "moment";
 
@@ -13,6 +14,9 @@ export default async function Home() {
 	const ParsedData = await FilterData(data);
 
 	const IsAfterNoon = moment().isAfter(moment().hour(12).minute(0).second(0));
+	const DisplayOrder = (): Scope[] => {
+		return IsAfterNoon ? ["tomorrow", "today"] : ["today", "tomorrow"];
+	}
 	const isHoliday = () => {
 		// Holiday Consider is when the parsed data is empty
 		// or the parsed data has only first period and it's empty and has no second period
@@ -24,7 +28,7 @@ export default async function Home() {
 		);
 	};
 	return (
-		<div className='flex flex-col gap-8 min-h-screen p-8 '>
+		<div className='flex flex-col gap-8 px-8 py-24 lg:py-0 min-h-screen '>
 			<main className='flex flex-col gap-3  m-auto'>
 				<div className='flex flex-col gap-3 items-center justify-center'>
 					<Image
@@ -41,14 +45,9 @@ export default async function Home() {
 				</div>
 				{!isHoliday() ? (
 					<div className='flex flex-col md:flex-row gap-3 justify-center'>
-						<TableGrid
-							data={ParsedData}
-							scope={IsAfterNoon ? "today" : "tomorrow"}
-						/>
-						<TableGrid
-							data={ParsedData}
-							scope={IsAfterNoon ? "tomorrow" : "today"}
-						/>
+					{DisplayOrder().map((scope, index) => (
+						<TableGrid key={index} data={ParsedData} scope={scope} />
+					))}
 					</div>
 				) : (
 					<div>Enjoy Your Holiday</div>

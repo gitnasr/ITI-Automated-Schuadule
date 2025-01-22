@@ -10,7 +10,10 @@ type Schedule = {
     tomorrow: PeriodItem[];
 }
 
+type Scope = "today" | "tomorrow";
+
 export type {
     Schedule,
     PeriodItem,
+    Scope
 }
