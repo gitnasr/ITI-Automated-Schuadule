@@ -23,4 +23,4 @@ So, why not create a simple web service to solve this problem?
 ![](https://img.shields.io/badge/next.js-fff?style=for-the-badge&logo=nextdotjs&logoColor=black)  
 
 ## API Endpoint  
-Thanks to Next.js Server Actions, I’ve created an endpoint `/api/automated` to access the schedule data via an API. This is particularly useful because I plan to develop a WhatsApp bot that sends notifications whenever the schedule is updated!  
+Thanks to Next.js Server Actions, I’ve created an endpoint <a href="https://iti-automated-schuadule.vercel.app/api/automated" target="_blank">`/api/automated`</a> to access the schedule data via an API. This is particularly useful because I plan to develop a WhatsApp bot that sends notifications whenever the schedule is updated!  
