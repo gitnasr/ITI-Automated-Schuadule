@@ -1,8 +1,9 @@
+import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
+
 import Image from "next/image";
+import { NoData } from "./components/NoData";
 import TableGrid from "./components/TableGrid";
 import moment from "moment";
-import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
-import { NoData } from "./components/NoData";
 
 export default async function Home() {
 	const data = await GetGoogleSheetAccess();
@@ -14,7 +15,7 @@ export default async function Home() {
 	const IsAfterNoon = moment().isAfter(moment().hour(12).minute(0).second(0));
 	const isHoliday = () => {
 		// Holiday Consider is when the parsed data is empty
-		//  or the parsed data has only first period and it's empty and has no second period
+		// or the parsed data has only first period and it's empty and has no second period
 		return (
 			ParsedData.today.length === 0 ||
 			(ParsedData.today.length === 1 &&
@@ -42,11 +43,11 @@ export default async function Home() {
 					<div className='flex flex-col md:flex-row gap-3 justify-center'>
 						<TableGrid
 							data={ParsedData}
-							scope={IsAfterNoon ? "tomorrow" : "today"}
+							scope={IsAfterNoon ? "today" : "tomorrow"}
 						/>
 						<TableGrid
 							data={ParsedData}
-							scope={IsAfterNoon ? "today" : "tomorrow"}
+							scope={IsAfterNoon ? "tomorrow" : "today"}
 						/>
 					</div>
 				) : (
