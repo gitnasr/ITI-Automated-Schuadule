@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function GET(): Promise<NextResponse> {
 	try {
-		const { success, message } = await CronJobAction();
-		return NextResponse.json({ success, message });
+		const { success, message,data } = await CronJobAction();
+		return NextResponse.json({ success, message,data });
 	} catch (error) {
 		return NextResponse.json(
 			{

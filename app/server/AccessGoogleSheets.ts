@@ -1,7 +1,8 @@
 "use server";
+
+import { Schedule } from "../types";
 import { google } from "googleapis";
 import moment from "moment";
-import { Schedule } from "../types";
 
 const SPREADSHEET_ID = "15niRN3yDfeglOy4UPiYB7UrpOxhp83slN4BJcD2HAvs";
 const SHEET_NAME = "PD&SQLBI_45_Alex!A1:L1000";
@@ -92,11 +93,16 @@ export async function GetGoogleSheetAccess() {
 	}
 	return response.data.values;
 }
-export const CronJobAction = async () => {
+interface CronJobActionResponse {
+	success: boolean;
+	message: string;
+	data: Schedule | [];
+}
+export const CronJobAction = async (): Promise<CronJobActionResponse>  => {
 	const data = await GetGoogleSheetAccess();
 	if (!data) {
-		return { success: false, message: "No Data Found" };
+		return { success: false, message: "No Data Found", data:[] };
 	}
 	const ParsedData = await FilterData(data);
-	return { success: true, message: ParsedData };
+	return { success: true, data: ParsedData, message:moment().toNow() };
 }
