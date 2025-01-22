@@ -76,8 +76,9 @@ export const FilterData = async (data: (string | undefined)[][]) => {
 };
 
 export async function GetGoogleSheetAccess() {
+	const home_dir = process.cwd();
 	const auth = new google.auth.GoogleAuth({
-		keyFile: "account-secret.json",
+		keyFile: `${home_dir}/account-secret.json`,
 		scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 	});
 
