@@ -1,6 +1,8 @@
 "use server";
 
 import { Schedule } from "../types";
+
+import { Schedule } from "../types";
 import { google } from "googleapis";
 import moment from "moment-timezone";
 
@@ -76,8 +78,9 @@ export const FilterData = async (data: (string | undefined)[][]) => {
 };
 
 export async function GetGoogleSheetAccess() {
+	const home_dir = process.cwd();
 	const auth = new google.auth.GoogleAuth({
-		keyFile: "account-secret.json",
+		keyFile: `${home_dir}/account-secret.json`,
 		scopes: ["https://www.googleapis.com/auth/spreadsheets.readonly"],
 	});
 
@@ -93,11 +96,16 @@ export async function GetGoogleSheetAccess() {
 	}
 	return response.data.values;
 }
-export const CronJobAction = async () => {
+interface CronJobActionResponse {
+	success: boolean;
+	message: string;
+	data: Schedule | [];
+}
+export const CronJobAction = async (): Promise<CronJobActionResponse>  => {
 	const data = await GetGoogleSheetAccess();
 	if (!data) {
-		return { success: false, message: "No Data Found" };
+		return { success: false, message: "No Data Found", data:[] };
 	}
 	const ParsedData = await FilterData(data);
-	return { success: true, message: ParsedData };
+	return { success: true, data: ParsedData, message:moment().toNow() };
 }

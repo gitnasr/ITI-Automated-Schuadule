@@ -10,7 +10,7 @@ const TableItem = ({ item, scope }: { item: PeriodItem; scope: string }) => {
 						? `TODAY, ${moment().format("DD MMM")}`
 						: `TOMORROW, ${moment().add(1,"day").format("DD MMM")}`}
 				</span>
-				<h2 className='text-2xl font-bold text-cyan-700'>
+				<h2 className='text-2xl font-bold text-cyan-700 '>
 					{item.period === 1
 						? "09:00AM"
 						: item.period === 2
