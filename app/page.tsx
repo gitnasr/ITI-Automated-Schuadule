@@ -7,7 +7,7 @@ import Image from "next/image";
 import LoadingIndicator from "./components/Loading";
 import MyAwesomeError from "./components/Error";
 import TableGrid from "./components/TableGrid";
-import moment from "moment";
+import moment from "moment-timezone";
 
 async function getSchedule() {
   try {

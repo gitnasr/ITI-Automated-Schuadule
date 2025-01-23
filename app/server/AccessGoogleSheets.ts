@@ -1,8 +1,6 @@
 "use server";
 
 import { Schedule } from "../types";
-
-import { Schedule } from "../types";
 import { google } from "googleapis";
 import moment from "moment-timezone";
 
