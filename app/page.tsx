@@ -1,8 +1,9 @@
-import Image from "next/image";
-import TableGrid from "./components/TableGrid";
-import moment from "moment";
 import { FilterData, GetGoogleSheetAccess } from "./server/AccessGoogleSheets";
+
+import Image from "next/image";
 import { NoData } from "./components/NoData";
+import TableGrid from "./components/TableGrid";
+import moment from "moment-timezone";
 
 export default async function Home() {
 	const data = await GetGoogleSheetAccess();

@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import { Geist, Geist_Mono } from "next/font/google";
+
+import type { Metadata } from "next";
 import moment from "moment-timezone";
 
 const geistSans = Geist({
@@ -21,13 +23,12 @@ export const metadata: Metadata = {
   
  
 };
-
+moment.tz.setDefault("Africa/Cairo");
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  moment.tz.setDefault("Africa/Cairo");
   return (
     <html lang="en">
       <body
